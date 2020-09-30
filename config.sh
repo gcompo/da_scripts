@@ -99,11 +99,14 @@ elif [ "$machine" == 'orion' ]; then
    module load intel/2018.4
    module load impi/2018.4
    module load mkl/2018.4
-   module load netcdf/4.7.2-parallel
-   module load hdf5/1.10.5-parallel
-   module load python
+   export NCEPLIBS=/apps/contrib/NCEPLIBS/lib
+   module use -a $NCEPLIBS/modulefiles
+   module unload netcdf/4.7.4 
+   module unload hdf5/1.10.6
+   module load netcdfp/4.7.4
    export PYTHONPATH=/home/jwhitake/.local/lib/python3.7/site-packages
    export HDF5_DISABLE_VERSION_CHECK=1
+   module list
 elif [ "$machine" == 'gaea' ]; then
    export basedir=/lustre/f2/dev/${USER}
    export datadir=/lustre/f2/scratch/${USER}

@@ -7,6 +7,10 @@ else
    module load nco
    nces=`which nces`
 fi
+if [ $machine == 'orion' ]; then
+module unload netcdf/4.7.4
+module unload hdf5/1.10.6
+fi
 module list
 export OMP_STACKSIZE=1024M
 
