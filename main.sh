@@ -309,14 +309,14 @@ echo "$analdate done computing ensemble mean analyses `date`"
 # recenter enkf analyses around control analysis
 if [ $controlanal == 'true' ] && [ $recenter_anal == 'true' ]; then
    if [ $hybgain == 'true' ]; then
-      if [ $alpha -gt 0 ]; then
-         echo "$analdate blend enkf and 3dvar increments `date`"
+      if [ $alpha -gt 0 ] || [ $rtps -gt 0 ]; then
+         echo "$analdate blend enkf and 3dvar increments + rtps inflation`date`"
          sh ${enkfscripts}/blendinc2.sh > ${current_logdir}/blendinc.out 2>&1
          blendinc_done=`cat ${current_logdir}/blendinc.log`
          if [ $blendinc_done == 'yes' ]; then
-           echo "$analdate increment blending/recentering completed successfully `date`"
+           echo "$analdate increment blending/recentering/inflation completed successfully `date`"
          else
-           echo "$analdate increment blending/recentering did not complete successfully, exiting `date`"
+           echo "$analdate increment blending/recentering/inflation did not complete successfully, exiting `date`"
            exit 1
          fi
       fi

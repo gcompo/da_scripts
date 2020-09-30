@@ -351,6 +351,7 @@ export analpertwttr=0.75
 export analpertwtnh_rtpp=0.25
 export analpertwtsh_rtpp=0.25
 export analpertwttr_rtpp=0.25
+export rtps=0
 export pseudo_rh=.true.
 export use_correlated_oberrs=".true."
                                                                     
