@@ -448,7 +448,7 @@ if [ "$machine" == 'hera' ]; then
    export enkfbin=${execdir}/global_enkf
    export FCSTEXEC=${execdir}/${fv3exec}
    export gsiexec=${execdir}/global_gsi
-   export CHGRESEXEC=${execdir}/chgres_recenter_ncio.exe
+   export CHGRESEXEC=${execdir}/enkf_chgres_recenter_nc.x
 elif [ "$machine" == 'orion' ]; then
    export python=`which python`
    export fv3gfspath=${basedir}
