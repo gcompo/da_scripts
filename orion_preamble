@@ -1,7 +1,7 @@
 #!/bin/sh
 #SBATCH -q urgent
 #SBATCH -t 03:00:00
-#SBATCH -A gsienkf
+#SBATCH -A ome
 #SBATCH -N 20  
 #SBATCH --ntasks-per-node=40
 #SBATCH -p orion
