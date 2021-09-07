@@ -26,9 +26,9 @@ export beta=1000 # percentage of enkf increment (*10)
 # in this case, to recenter around EnVar analysis set recenter_control_wgt=100
 export recenter_control_wgt=100
 export recenter_ensmean_wgt=`expr 100 - $recenter_control_wgt`
-export exptname="C${RES}_hybgain1_gdas"
+export exptname="C${RES}_hybgain_hourly"
 # for 'passive' or 'replay' cycling of control fcst 
-export replay_controlfcst='false'
+export replay_controlfcst='true'
 
 export fg_gfs="run_ens_fv3.sh"
 export ensda="enkf_run.sh"
@@ -75,7 +75,7 @@ if [ "$machine" == 'hera' ]; then
    export datadir=$basedir
    export hsidir="/ESRL/BMC/gsienkf/2year/whitaker/${exptname}"
    export obs_datapath2=/scratch1/NCEPDEV/global/glopara/dump # for sst,snow,ice grib
-   export obs_datapath=/scratch2/BMC/gsienkf/whitaker/gdas1bufr # for bufr
+   export obs_datapath=$obs_datapath2
    module purge
    module load intel/18.0.5.274
    module load impi/2018.0.4 
@@ -92,8 +92,10 @@ elif [ "$machine" == 'orion' ]; then
    export basedir=/work/noaa/ome/${USER}
    export datadir=$basedir
    export hsidir="/ESRL/BMC/gsienkf/2year/whitaker/${exptname}"
-   export obs_datapath2=/work/noaa/sfc-perts/gbates/hrlyda_dumps/6hrly
-   export obs_datapath=/work/noaa/sfc-perts/gbates/hrlyda_dumps/6hrly
+   #export obs_datapath2=/work/noaa/sfc-perts/gbates/hrlyda_dumps/6hrly
+   #export obs_datapath=/work/noaa/sfc-perts/gbates/hrlyda_dumps/6hrly
+   export obs_datapath=/work/noaa/rstprod/dump
+   export obs_datapath2=/work/noaa/rstprod/dump
    #export obs_datapath2=/work/noaa/global/glopara/dump
    #export obs_datapath=/work/noaa/global/glopara/dump
    ulimit -s unlimited
@@ -152,7 +154,7 @@ export NST_GSI=0
 if [ $NST_GSI -gt 0 ]; then export NSTINFO=4; fi
 if [ $NOSAT == "YES" ]; then export NST_GSI=0; fi # don't try to do NST in GSI without satellite data
 
-export LEVS=64   
+export LEVS=127  
 if [ $LEVS -eq 64 ]; then
   export nsig_ext=12
   export gpstop=50
@@ -432,7 +434,7 @@ export NLAT=$((${LATA}+2))
 #export BERROR=${basedir}/staticB/global_berror_enkf.l${LEVS}y${NLAT}.f77
 #export BERROR=${basedir}/staticB/24h/global_berror.l${LEVS}y${NLAT}.f77_janjulysmooth0p5
 #export BERROR=${basedir}/staticB/24h/global_berror.l${LEVS}y${NLAT}.f77_annmeansmooth0p5
-export REALTIME=NO # if NO, use historical files set in main.sh
+export REALTIME=YES # if NO, use historical files set in main.sh
 
 # parameters for hybrid gain
 if [ $hybgain == "true" ]; then
