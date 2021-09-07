@@ -2,7 +2,7 @@
 ##SBATCH -q debug
 #SBATCH -p orion
 #SBATCH -t 06:00:00
-#SBATCH -A gsienkf
+#SBATCH -A ome
 #SBATCH -N 10    
 #SBATCH --ntasks-per-node=40
 #SBATCH -J observer
@@ -18,7 +18,7 @@ echo "running on $machine using $NODES nodes and $cores CORES"
 #export RUN='gdas'
 export RUN='gdas'
 export RES='192'
-export basedir=/work/noaa/gsienkf/${USER}
+export basedir=/work/noaa/ome/${USER}
 export datadir=$basedir
 export exptname="C${RES}_hybgain1_gdas"
 export obs_datapath=/work/noaa/sfc-perts/gbates/hrlyda_dumps/6hrly
